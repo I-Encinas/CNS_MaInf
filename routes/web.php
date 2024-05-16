@@ -1,8 +1,12 @@
 <?php
 
+use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\EmployeeController;
+use App\Http\Controllers\ManagementUnitController;
+use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ServiceController;
+use App\Http\Controllers\SupplyController;
 use App\Http\Controllers\UserController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
@@ -36,6 +40,11 @@ Route::redirect('/', '/dashboard' ) ;
 Route::middleware(['auth','verified'])->group(function(){
     Route::get('/dashboard', fn() => Inertia::render('Dashboard'))
     ->name('dashboard');
+    Route::resource('category', CategoryController::class);
+    Route::resource('managmrntunit', ManagementUnitController::class);
+    Route::resource('ordertype', OrderController::class);
+    Route::resource('order', OrderController::class);
+    Route::resource('supply', SupplyController::class);
     Route::resource('service', ServiceController::class);
     Route::resource('employee', EmployeeController::class);
     Route::resource('user', UserController::class);

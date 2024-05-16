@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Order;
 use App\Http\Requests\StoreOrderRequest;
 use App\Http\Requests\UpdateOrderRequest;
+use App\Http\Resources\OrderResource;
 
 class OrderController extends Controller
 {
@@ -13,7 +14,11 @@ class OrderController extends Controller
      */
     public function index()
     {
-        //
+        $query=Order::query();
+        $orders = $query->paginate(10);
+        return inertia("Order/index", [
+            "orders" =>OrderResource::collection($orders)
+        ]);
     }
 
     /**

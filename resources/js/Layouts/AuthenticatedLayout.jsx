@@ -20,10 +20,11 @@ export default function Authenticated({ user, header, children }) {
                                 </Link>
                             </div>
 
-                            <div className="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                            <div className="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex" >
                                 <NavLink href={route('dashboard')} active={route().current('dashboard')}>
                                     Dashboard
                                 </NavLink>
+
                                 <NavLink href={route('service.index')} active={route().current('service.index')}>
                                     Services
                                 </NavLink>
@@ -33,6 +34,15 @@ export default function Authenticated({ user, header, children }) {
                                 <NavLink href={route('user.index')} active={route().current('user.index')}>
                                     Users
                                 </NavLink>
+                                <NavLink href={route('order.index')} active={route().current('order.index')}>
+                                    Orders
+                                </NavLink>
+                                <NavLink href={route('supply.index')} active={route().current('supply.index')}>
+                                    Supplies
+                                </NavLink>
+                                {/* <NavLink href={route('user.index')} active={route().current('user.index')}>
+                                    Users
+                                </NavLink> */}
                             </div>
                         </div>
 

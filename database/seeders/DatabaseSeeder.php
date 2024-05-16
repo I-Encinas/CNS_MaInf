@@ -30,6 +30,7 @@ class DatabaseSeeder extends Seeder
         ]);
         Service::factory()
         ->count(10)
+        
         ->create();
     }
 }

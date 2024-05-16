@@ -6,7 +6,7 @@ use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class EmployeeResource extends JsonResource
+class OrderResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -15,16 +15,11 @@ class EmployeeResource extends JsonResource
      */
     public function toArray(Request $request): array
     {
-        // return parent::toArray($request);
         return[
             'id'=>$this->id,
-            'service' => $this->service ? new ServiceResource($this->service) : null,
-            'ci'=>$this->ci,
-            'name'=>$this->name,
-            'paternal_surname'=>$this->paternal_surname,
-            'maternal_surname'=>$this->maternal_surname,
-            'address'=>$this->address,
-            'phone'=>$this->phone,
+            'order_type_id'=> new ServiceResource($this->service_id), 
+            'status'=>$this->status,
+            'date_o'=>(new Carbon($this->date_o))->format('Y-m-d h:m:s'),  
             'created_at'=>(new Carbon($this->created_at))->format('Y-m-d'),  
             'updated_at'=>(new Carbon($this->updated_at))->format('Y-m-d'),  
         ];

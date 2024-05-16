@@ -9,7 +9,7 @@ class Employee extends Model
 {
     use HasFactory;
     public function service()
-    {
-        return $this->belongsTo(Service::class, 'service_id');
-    }
+{
+    return $this->belongsTo(Service::class, 'service_id');
+}
 }

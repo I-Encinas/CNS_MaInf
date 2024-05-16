@@ -15,9 +15,23 @@ class ServiceController extends Controller
     public function index()
     {
         $query=Service::query();
-        $services = $query->paginate(10)->onEachSide(1);
+
+        $sortField = request("sort_field", 'created_at');
+        $sortDirection = request("sort_direction", "desc");
+
+        if (request("name")) {
+            $query->where("name", "like", "%" . request("name") . "%");
+        }
+
+        $services = $query->orderBy($sortField, $sortDirection)
+            ->paginate(10)
+            ->onEachSide(1);
         return inertia("Service/index", [
-            "services" =>ServiceResource::collection($services)
+            "services" =>ServiceResource::collection($services),
+            'queryParams' => request()->query() ?: null,
+            // 'success' => session('success'),
+
+
         ]);
     }
 

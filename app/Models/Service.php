@@ -10,6 +10,6 @@ class Service extends Model
     use HasFactory;
     public function employees()
     {
-        return $this->hasMany('App\Models\Employee', 'service_id', 'id');
+        return $this->hasMany(Employee::class);
     }
 }
